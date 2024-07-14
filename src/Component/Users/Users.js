@@ -12,7 +12,7 @@ const Users  = () => {
 
     const getdata = () => {
                 setLoading(true)        
-                axios.get(process.env.REACT_APP_ENDPOINT_USED+'/admin/users')
+                axios.get('/admin/users')
                 .then(res => {
                  setUsers(res.data.users)
                  console.log(res.data.users.includes(e => e == ''))
