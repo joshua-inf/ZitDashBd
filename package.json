@@ -10,7 +10,8 @@
     "react-bootstrap": "^2.10.4",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.24.1",
-    "react-scripts": "5.0.1"
+    "react-scripts": "5.0.1",
+    "react-spinners": "^0.14.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -40,5 +41,5 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "dotenv": "^16.4.5"
   },
-  "proxy":"https://zit-fuse-app-server-n5twwpnjzq-bq.a.run.app"
+  "proxy": "https://zit-fuse-app-server-n5twwpnjzq-bq.a.run.app"
 }
