@@ -12,7 +12,7 @@ const Users  = () => {
 
     const getdata = () => {
                 setLoading(true)        
-                axios.get(process.env.REACT_APP_ENDPOINT_USED+'/admin/users')
+                axios.get("/users")
                 .then(res => {
                  setUsers(res.data.users)
                  console.log(res.data.users.includes(e => e == ''))
@@ -103,7 +103,7 @@ const Users  = () => {
                          .slice(first,last)
                          .map((e)=> 
                          <>
-                            <div className="p-2 col-3 ">
+                            <div className="p-2 col-12 col-sm-6 col-md-3 ">
                                 <div  className="card p-1" style={{fontSize:'12px'}}>
                                      <div>
                                          Name: {e.Name}

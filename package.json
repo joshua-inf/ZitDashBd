@@ -40,5 +40,6 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "dotenv": "^16.4.5"
-  }
+  },
+  "proxy": "https://zit-fuse-app-server-n5twwpnjzq-bq.a.run.app"
 }
