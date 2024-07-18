@@ -23,8 +23,6 @@ const UpperNav = () => {
                     </div>
                     <div>
                         <div style={{display:'flex', gap:10}}>
-                        <Links Title="Dashbourd" Linkname="/"/>
-                        <Links Title="Users" Linkname="/Users"/>
                         </div>
                     </div>
                 </div>

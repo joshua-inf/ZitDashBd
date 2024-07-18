@@ -10,17 +10,25 @@ import Users from './Component/Users/Users';
 function App() {
   return (
     <BrowserRouter>
-      <div className="" style={{overflow:'hidden', position:'relative'}}>
-        <div style={{position:'sticky', position:'-webkit-sticky', top:0}}>
-            <UpperNav/>
-        </div>
-        <div style={{}} className="">
-          <div className=" d-flex flex-column justify-content-between bg-light p-4">
-            <div>
-              <Routes>
-                <Route path='/' element={<Home/>} />
-                <Route path='/Users' element={<Users/>}/>
-              </Routes>
+      <div className="" style={{ overflow: 'hidden', position: 'relative', minHeight: '100vh' }}>
+
+        <div className='d-flex' style={{}}>
+          <div style={{
+            width: '150px'
+          }}>
+            <Nav />
+          </div>
+          <div style={{}} className="">
+            <div style={{ }}>
+              <UpperNav />
+            </div>
+            <div className=" d-flex flex-column justify-content-between bg-light p-4">
+              <div>
+                <Routes>
+                  <Route path='/' element={<Home />} />
+                  <Route path='/Users' element={<Users />} />
+                </Routes>
+              </div>
             </div>
           </div>
         </div>

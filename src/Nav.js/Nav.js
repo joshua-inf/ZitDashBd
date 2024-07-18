@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom"
-import { Nav } from "react-bootstrap"
+import { Col, Nav } from "react-bootstrap"
 import './Nav.css'
 
 const MyNav = () => {
@@ -18,8 +18,15 @@ const MyNav = () => {
     }
     return (
         <>
-            <div>
-                <div className="bg-light p-3 h-100">
+            <div style={{width:'150px'}}>
+                <div className=" p-3 h-100" 
+                style={{
+                    position:'absolute',
+                    bottom:0,
+                    top:0,
+                    zIndex:3,
+                    backgroundColor:'white'
+                    }}>
                     <div>
                         <Links Title="Dashbourd" Linkname="/"/>
                         <Links Title="Users" Linkname="/Users"/>

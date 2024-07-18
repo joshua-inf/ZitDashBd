@@ -1,7 +1,7 @@
 a {
     text-decoration: none;
     justify-content: center;
-    color: black;
+    color: #8F95B2;
     transition: all ease 0.1s;
 }
 .Linkinner{
@@ -11,7 +11,10 @@ a {
     border-radius: 10px;
 }
 
- .active {
-    color: #ffc107;
+.active .Linkinner {
+    background-color: #0876A2;
+}
+.active {
+    color: white;
     transition: all ease 0.1s;
 }
