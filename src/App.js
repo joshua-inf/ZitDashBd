@@ -18,11 +18,8 @@ function App() {
           }}>
             <Nav />
           </div>
-          <div style={{}} className="">
-            <div style={{ }}>
-              <UpperNav />
-            </div>
-            <div className=" d-flex flex-column justify-content-between bg-light p-4">
+          <div style={{width:'100%'}} className="">
+            <div className="">
               <div>
                 <Routes>
                   <Route path='/' element={<Home />} />
