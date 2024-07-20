@@ -16,10 +16,11 @@ const UpperNav = () => {
     }
     return (
         <>
-            <div style={{backgroundColor:'#ddd'}}  className="px-4 py-3  d-flex">
+            <div style={{position:'fixed', zIndex:3, width:'100%'}}  className="px-4 py-3  bg-white d-flex">
                 <div className="d-flex w-100 justify-content-between">
                     <div>
-                        <h5>Zitfuse</h5>
+                        <h5 className="p-0 m-0">Hi There</h5>
+                        <div style={{color:'#8F95B2', padding:0, margin:0}}>Let's check your progress today</div>
                     </div>
                     <div>
                         <div style={{display:'flex', gap:10}}>

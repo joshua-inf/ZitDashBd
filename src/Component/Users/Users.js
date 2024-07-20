@@ -1,34 +1,19 @@
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { ClipLoader, DotLoader } from "react-spinners"
+import { ContextHandler } from "../Context/Context"
 
 const Users  = () => {
-    const [users, setUsers] = useState([])
+    const {userData, setUserData} = useContext(ContextHandler)
     const [loading, setLoading] = useState(false)
     const [loader, setLoader] = useState(false)
     const [first, setFirst] = useState(0)
     const [last, setLast] = useState(50)
     const [filter, setFilter] = useState('')
 
-    const getdata = () => {
-                setLoading(true)        
-                axios.get("/admin/users")
-                .then(res => {
-                 setUsers(res.data.users)
-                 console.log(res.data.users.includes(e => e == ''))
-                 
-                })
-                .catch((error)=>{
-                    console.log(error)
-                })
-                .finally(() => {
-                    setLoading(false)
-                })
-
-    }
+   
 
     const loguserOut = (e) => {
-        setLoader(true)
         axios.post('/auth/logout', 
         {
             "email": e
@@ -36,8 +21,7 @@ const Users  = () => {
         .then(res => {
             axios.get('/admin/users')
                 .then(res => {
-                 setUsers(res.data.users)
-                 console.log(res.data.users.includes(e => e == ''))
+                 setUserData(res.data.users)
                  
                 })
                 .catch((error)=>{
@@ -48,16 +32,7 @@ const Users  = () => {
         .catch((error)=>{
             console.log(error)
         })
-        .finally(() => {
-            setLoader(false)
-        })
     }
-
-
-
-    useEffect(()=>{
-        getdata()
-    },[])
 
     return (
         <>
@@ -79,9 +54,9 @@ const Users  = () => {
                     className="btn btn-outline-secondary rounded-0">Last</button>
 
                     <button disabled={
-                        users ? first < users.length && last > users.length 
+                        userData ? first < userData.length && last > userData.length 
                         :
-                        users}
+                        userData}
                     onClick={()=> {
                         setFirst(first+50)
                         setLast(last+50)
@@ -97,8 +72,8 @@ const Users  = () => {
                     </>
                     : 
                     <>
-                        {users ?
-                         users
+                        {userData ?
+                         userData
                          .filter(e => e.Email.includes(filter))
                          .slice(first,last)
                          .map((e)=> 
