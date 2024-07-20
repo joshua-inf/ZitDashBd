@@ -6,32 +6,75 @@ import { ContextHandler } from "../Context/Context"
 const Users  = () => {
     const {userData, setUserData} = useContext(ContextHandler)
     const [loading, setLoading] = useState(false)
-    const [loader, setLoader] = useState(false)
     const [first, setFirst] = useState(0)
     const [last, setLast] = useState(50)
     const [filter, setFilter] = useState('')
 
    
 
-    const loguserOut = (e) => {
-        axios.post('/auth/logout', 
-        {
-            "email": e
-        })
-        .then(res => {
-            axios.get('/admin/users')
-                .then(res => {
-                 setUserData(res.data.users)
-                 
-                })
-                .catch((error)=>{
-                    console.log(error)
-                })
+    
 
-        })
-        .catch((error)=>{
-            console.log(error)
-        })
+    const UserComp = (props) => {
+    const [loader, setLoader] = useState(false)
+
+        const loguserOut = (e) => {
+            setLoader(true)
+            axios.post('/auth/logout', 
+            {
+                "email": e
+            })
+            .then(res => {
+                axios.get('/admin/users')
+                    .then(res => {
+                     setUserData(res.data.users)
+                     
+                    })
+                    .catch((error)=>{
+                        console.log(error)
+                    })
+                    .finally(()=>{
+                        setLoader(false)
+                    })
+    
+            })
+            .catch((error)=>{
+                console.log(error)
+            })
+            
+        }
+
+        return (
+            <>
+            <div className="p-2 col-12 col-sm-6 col-md-3 ">
+                                <div  className="card p-1" style={{fontSize:'12px'}}>
+                                     <div>
+                                         Name: {props.Name}
+                                     </div>
+                                     <div>
+                                         Email: {props.Email}
+                                     </div>
+                                     <div>
+                                         Subscription Date: {props.Subscription_date?  props.Subscription_date : 'None'}
+                                     </div>
+
+                                     <div className="text-center p-3">
+                                             {loader ?
+                                                 <ClipLoader size={20} />
+                                                 :
+                                                 <button disabled={!props.LoggedIn} onClick={() => loguserOut(props.Email)} className={`btn ${props.LoggedIn ? `btn-danger` : `btn-light`}`}>
+                                                     {props.LoggedIn ?
+                                                         'log user out'
+                                                         :
+                                                         'user is logged out'
+                                                     }
+                                                 </button>
+                                             }
+                                     </div>
+
+                                </div>
+                            </div>
+            </>
+        )
     }
 
     return (
@@ -78,34 +121,7 @@ const Users  = () => {
                          .slice(first,last)
                          .map((e)=> 
                          <>
-                            <div className="p-2 col-12 col-sm-6 col-md-3 ">
-                                <div  className="card p-1" style={{fontSize:'12px'}}>
-                                     <div>
-                                         Name: {e.Name}
-                                     </div>
-                                     <div>
-                                         Email: {e.Email}
-                                     </div>
-                                     <div>
-                                         Subscription Date: {e.Subscription_date?  e.Subscription_date : 'None'}
-                                     </div>
-
-                                     <div className="text-center p-3">
-                                             {loader ?
-                                                 <ClipLoader size={20} />
-                                                 :
-                                                 <button disabled={!e.LoggedIn} onClick={() => loguserOut(e.Email)} className={`btn ${e.LoggedIn ? `btn-danger` : `btn-light`}`}>
-                                                     {e.LoggedIn ?
-                                                         'log user out'
-                                                         :
-                                                         'user is logged out'
-                                                     }
-                                                 </button>
-                                             }
-                                     </div>
-
-                                </div>
-                            </div>
+                            <UserComp Name={e.Name} LoggedIn={e.LoggedIn} Email={e.Email} Subscription_date={e.Subscription_date} />
                          </>
                         )
                         :
